@@ -98,6 +98,7 @@ public class matriculaBean {
       }catch(Exception ex)
       {
        throw ex;
+       
       }
     }
     
