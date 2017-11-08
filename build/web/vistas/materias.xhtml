@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+   <h:body>
+        Ingreso de Materias
+        
+        <p:growl id="mensaje" autoUpdate="true"/>
+        <h:form id = "frm">
+              
+
+                       <p:commandButton value="Nueva Materia" oncomplete="PF('wdlDatos').show();" onclick="#{materiaBean.setAction('Registrar')}"/>
+                     
+
+                      <p:commandButton value="listar Materias" actionListener="#{materiaBean.listar()}" update="data"/>
+              
+                <h:link outcome="/index"  value="  Volver" />
+              
+                <p:dataTable id="data" value="#{materiaBean.lstmaterias}" var="materia" >
+                  <p:column headerText="Codigo Materia" >
+                      <p:outputLabel value="#{materia.idMateria}"/>
+                       </p:column>
+                  <p:column headerText="Materia Nombre" >
+                      <p:outputLabel value="#{materia.materiaNombre}"/>
+                      </p:column>
+
+                  <p:column headerText="Modificar" >
+                <p:commandLink value="Modificar" actionListener="#{materiaBean.leerID(materia)}" oncomplete="PF('wdlDatos').show();" update=":dlgDatos"/>
+              </p:column> 
+                <p:column headerText="Eliminar" >
+                <p:commandLink value="Eliminar" actionListener="#{materiaBean.eliminar(materia)}"  update="data"/>
+              
+                          </p:column>
+              </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Datos" widgetVar="wdlDatos" id="dlgDatos">
+                    
+        <h:form>
+            <p:outputLabel value="Codigo" />
+            <p:inputText value="#{materiaBean.materia.idMateria}"/>
+                       <p:outputLabel value="Nombre Materia"/> 
+                       <p:inputText value="#{materiaBean.materia.materiaNombre}"/>
+                
+  
+            
+                <p:commandButton value="#{materiaBean.action}" actionListener="#{materiaBean.operar()}" oncomplete="PF('wdlDatos').hide();" update=":frm:data"/>
+                <p:commandButton value="Cancelar" immediate="true"/>
+            
+        </h:form>
+           </p:dialog>
+    </h:body>
+</html>

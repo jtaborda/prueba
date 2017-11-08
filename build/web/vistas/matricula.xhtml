@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Matricular Estudiantess<br></br>
+ 
+    
+    <f:event type="preRenderView" listener="#{personaBean.listar()}"/>
+    
+    <f:event type="preRenderView" listener="#{materiaBean.listar()}"/>
+    <h:form>
+        <p:outputLabel value="Persona"/>
+        <p:selectOneMenu value="#{matriculaBean.matricula.codigo}">
+        <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+        <f:selectItems value="#{personaBean.lstpersonas}" var="per" itemLabel="#{per.nombre}" itemValue="#{per.nombre}" />
+</p:selectOneMenu>
+        
+        <p:outputLabel value="Materia"/>
+        <p:selectOneMenu value="#{matriculaBean.matricula}" >
+        <f:selectItem noSelectionOption="true" itemLabel="Seleccione Materia" itemValue="#{null}"/>
+        <f:selectItems value="#{materiaBean.lstmaterias}" var="mat" itemLabel="#{mat.materiaNombre}" itemValue="#{mat.materiaNombre}" />
+</p:selectOneMenu>
+        
+        <p:commandButton value="Matricular" actionListener="#{matriculaBean.registrar()}"/><br></br>
+        <p:commandButton value="Listar" actionListener="#{matriculaBean.listar()}"/><br></br>    
+                <h:link outcome="/index"  value="  << Volver" />
+                <p:dataTable id="detalle" value="#{matriculaBean.lista}" var="det">
+            
+            <p:column headerText="Nombre">
+                #{det.persona.nombre}
+            </p:column>
+             <p:column headerText="Materia">
+                 #{det.materia.materiaNombre}
+            </p:column>
+            
+        </p:dataTable>
+                    
+    </h:form>
+       </h:body>
+</html>
+
