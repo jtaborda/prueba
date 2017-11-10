@@ -23,7 +23,7 @@ public class PersonaDAO extends DAO{
     {try{
     
     this.Conectar();
-    PreparedStatement st = this.getCn().prepareStatement("INSERT into persona (id,nombre) values(?,?,?)");
+    PreparedStatement st = this.getCn().prepareStatement("INSERT into persona (id,nombre,sexo) values(?,?,?)");
     st.setInt(1,per.getCodigo());
     st.setString(2,per.getNombre());
     st.setString(3, per.getSexo());
@@ -55,8 +55,6 @@ public class PersonaDAO extends DAO{
         per.setCodigo(rs.getInt("id"));
          per.setNombre(rs.getString("nombre"));
          per.setSexo(rs.getString("sexo"));
-         
-         System.out.println( per.getCodigo()+""+per.getNombre()+"  "+per.getSexo());
          lista.add(per);
      }
    }

@@ -13,6 +13,37 @@ public class Matricula {
     
     private int codigo;
     private int id_materia;
+    
+     private int id_detalle;
+
+    public int getId_detalle() {
+        return id_detalle;
+    }
+
+    public void setId_detalle(int id_detalle) {
+        this.id_detalle = id_detalle;
+    }
+    
+    private String nombre;
+    private String materiaNombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getMateriaNombre() {
+        return materiaNombre;
+    }
+
+    public void setMateriaNombre(String materiaNombre) {
+        this.materiaNombre = materiaNombre;
+    }
+    
+    
 
     @Override
     public int hashCode() {

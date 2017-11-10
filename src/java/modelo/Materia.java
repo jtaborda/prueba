@@ -26,7 +26,8 @@ public class Materia {
         this.materiaNombre = materiaNombre;
     }
 
-    public int getIdMateria() {
+    public int getIdMateria() 
+    {
         return idMateria;
     }
 

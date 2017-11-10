@@ -44,8 +44,9 @@ public class matriculaBean {
         this.materia = materia;
     }
 
-    public List<Matricula> getLista() {
-
+    public List<Matricula> getLista() 
+    {
+     
         return lista;
     }
 
@@ -88,18 +89,61 @@ public class matriculaBean {
     
      public void registrar()throws Exception
     {
+
         MatriculaDAO dao;
         
       try
       {
       dao= new MatriculaDAO();
+         
       dao.registrar(matricula);
      
       }catch(Exception ex)
       {
+           
        throw ex;
        
       }
     }
+     
+        public void leerID(Persona per)throws Exception
+    {
+       MatriculaDAO dao;
+       Persona temp;
+       
+       try
+       {
+       dao = new MatriculaDAO();
+       temp = dao.leerID(per);
+       if(temp!=null)
+       { this.matricula = temp;
+       this.action="Modificar";
+       }
+       }
+       catch(Exception ex)
+        { 
+            throw ex;
+       }
+    }  
+     
+     
+     
+      public void eliminar(Matricula matr)throws Exception
+    {
+       MatriculaDAO dao;
+        
+      try
+      {
+      dao= new MatriculaDAO();
+      dao.eliminar(matr);
+      this.listar();
+      }catch(Exception ex)
+      {
+       throw ex;
+      }
+    }
+     
+     
+     
     
 }
