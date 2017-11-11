@@ -102,7 +102,7 @@ public class PersonaBean {
       }
     }
     
-    public void leerID(Persona per)throws Exception
+   public void leerID(Persona per)throws Exception
     {
        PersonaDAO dao;
        Persona temp;

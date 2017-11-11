@@ -44,14 +44,39 @@
                  #{det.materiaNombre}
             </p:column>          
      <p:column headerText="Modificar" >
-                <p:commandLink value="Modificar" actionListener="#{matriculaBean.leerID(det)}" />
+         <p:commandLink value="Modificar" actionListener="#{matriculaBean.leerID(det)}" oncomplete="PF('wdlDatos').show();" update=":dlgDatos" />
               </p:column> 
                 <p:column headerText="Eliminar" >
                 <p:commandLink value="Eliminar" actionListener="#{matriculaBean.eliminar(det)}"  update="detalle"/>
                </p:column>   
         </p:dataTable>
+        </h:form>           
+                
+ <p:dialog header="Datos" widgetVar="wdlDatos" id="dlgDatos">
                     
-    </h:form>
+        <h:form>
+               <p:outputLabel value="Codigo"/>
+               <p:outputLabel value="#{matriculaBean.matricula.id_detalle}"/>   
+   <p:outputLabel value="Persona"/>
+   <p:selectOneMenu value="#{matriculaBean.matricula.codigo}">
+       <f:selectItem noSelectionOption="true" itemLabel="#{matriculaBean.matricula.nombre}" itemValue="#{matriculaBean.matricula.codigo}"/>
+        <f:selectItems value="#{personaBean.lstpersonas}" var="per" itemLabel="#{per.nombre}" itemValue="#{per.codigo}" />
+</p:selectOneMenu>
+   
+    <p:outputLabel value="Materia"/>
+        <p:selectOneMenu value="#{matriculaBean.matricula.id_materia}" >
+            <f:selectItem noSelectionOption="true" itemLabel="#{matriculaBean.matricula.materiaNombre}" itemValue="#{matriculaBean.matricula.id_materia}"/>
+        <f:selectItems value="#{materiaBean.lstmaterias}" var="mat" itemLabel="#{mat.materiaNombre}" itemValue="#{mat.idMateria}" />
+</p:selectOneMenu>
+                
+
+ <p:commandButton value="#{matriculaBean.action}" actionListener="#{matriculaBean.operar()}" oncomplete="PF('wdlDatos').hide();"/>
+               
+            
+        </h:form>
+           </p:dialog>
+                    
+ 
        </h:body>
 </html>
 

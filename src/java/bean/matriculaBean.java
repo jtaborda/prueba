@@ -35,6 +35,17 @@ public class matriculaBean {
          lista = new ArrayList<>();
          matricula = new Matricula();
     }
+    
+        private String action;
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+
+        this.action = action;
+    }
            
     public Materia getMateria() {
         return materia;
@@ -106,17 +117,18 @@ public class matriculaBean {
       }
     }
      
-        public void leerID(Persona per)throws Exception
+        public void leerID(Matricula matri)throws Exception
     {
        MatriculaDAO dao;
-       Persona temp;
+          Matricula temp;
        
        try
        {
        dao = new MatriculaDAO();
-       temp = dao.leerID(per);
+       temp = dao.leerID(matri);
        if(temp!=null)
-       { this.matricula = temp;
+       { 
+           this.matricula = temp;
        this.action="Modificar";
        }
        }
@@ -143,7 +155,39 @@ public class matriculaBean {
       }
     }
      
-     
+        public void operar()throws Exception
+    {
+    switch(action)
+    {
+        case "Registrar":
+    this.registrar();
+
+    break;
+          
+        case "Modificar":
+              System.out.println("bean.matriculaBean.operar()Modificar case operar");
+    this.modificar();
+
+    break;
+    }
+    }
+
+       
+              public void modificar()throws Exception
+    {
+        MatriculaDAO dao;
+        
+        
+      try
+      {
+      dao= new MatriculaDAO();
+      dao.modificar(matricula);
+      this.listar();
+      }catch(Exception ex)
+      {
+       throw ex;
+      }
+    }
      
     
 }

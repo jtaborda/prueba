@@ -6,6 +6,7 @@
 package bean;
 
 import dao.MateriaDAO;
+import dao.MatriculaDAO;
 import dao.PersonaDAO;
 import java.util.ArrayList;
 import java.util.List;
